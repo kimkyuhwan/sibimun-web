@@ -62,7 +62,7 @@
         streamingAssetsUrl: "StreamingAssets",
         companyName: "kimkyuhwan",
         productName: "십이문",
-        productVersion: "1.0.63",
+        productVersion: "1.0.66",
         showBanner: unityShowBanner,
         // errorHandler: function(err, url, line) {
         //    alert("error " + err + " occurred at line " + line);
@@ -105,16 +105,15 @@
 
       } else {
         // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
-        // 폰 비율(19.5:9) 유지 + 창에 맞춤 — 고정 540×960은 위가 잘린다(실측)
+        var container = document.querySelector("#unity-container");
+        container.style.position = "fixed";
+        container.style.top = "0";
+        container.style.left = "50%";
+        container.style.transform = "translateX(-50%)";
         function fitCanvas() {
           var aspect = 540 / 1170;
-          var container = document.querySelector("#unity-container");
-          container.style.position = "fixed";
-          container.style.top = "0";
-          container.style.left = "50%";
-          container.style.transform = "translateX(-50%)";
           var footer = document.querySelector("#unity-footer");
-          if (footer) footer.style.display = "none";   // 전체화면 바는 없어도 된다(사용자 확정)
+          if (footer) footer.style.display = "none";
           var h = Math.round(Math.min(window.innerHeight, window.innerWidth / aspect));
           var w = Math.round(h * aspect);
           canvas.style.width = w + "px";
